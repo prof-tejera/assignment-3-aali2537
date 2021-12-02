@@ -19,7 +19,7 @@ function App() {
         <NavContainer>
           <nav>
             <ul>
-              <li>Aali2537 Assignment 2</li>
+              <li>Aali2537 Assignment 3</li>
               <li>
                 <Link to="/">Timers</Link>
               </li>
