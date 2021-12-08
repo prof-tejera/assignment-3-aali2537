@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -9,7 +9,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 import Panel from "./Panel";
-import { TimerContext } from "../context/TimerContext";
 
 const transitionCurve = "0.8s cubic-bezier(0.81, -0.21, 0.24, 1.09)";
 const iconsList = {
