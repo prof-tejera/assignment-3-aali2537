@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,6 +12,18 @@ import Panel from "./Panel";
 import { TimerContext } from "../context/TimerContext";
 
 const transitionCurve = "0.8s cubic-bezier(0.81, -0.21, 0.24, 1.09)";
+const iconsList = {
+  Stopwatch: faStopwatch,
+  Countdown: faHourglassStart,
+  XY: faClock,
+  Tabata: faStopwatch20,
+};
+const tabEM = {
+  1: "0em",
+  2: "10em",
+  3: "20em",
+  4: "30em",
+};
 
 const ListPanel = styled(Panel)`
   padding: 0;
@@ -77,43 +89,66 @@ const Tab = styled.div`
   transition: ${transitionCurve};
 `;
 
-const TimerSelect = () => {
-  const { timerType, selectTimer, tabPos } = useContext(TimerContext);
+const TimerSelect = (props) => {
+  const { options, tabPos, clickHandler } = props;
 
   return (
     <ListPanel>
       <TimerList>
         <Li
-          onClick={() => selectTimer("Stopwatch")}
-          className={timerType === "Stopwatch" ? "selected" : ""}
+          onClick={() => {
+            if (!!clickHandler) {
+              clickHandler("Stopwatch");
+            }
+          }}
+          className={tabPos === 1 ? "selected" : ""}
         >
-          <FontAwesomeIcon icon={faStopwatch} /> Stopwatch
+          <FontAwesomeIcon icon={iconsList[options[0]]} /> {options[0]}
         </Li>
         <Li
-          onClick={() => selectTimer("Countdown")}
-          className={timerType === "Countdown" ? "selected" : ""}
+          onClick={() => {
+            if (!!clickHandler) {
+              clickHandler("Countdown");
+            }
+          }}
+          className={tabPos === 2 ? "selected" : ""}
         >
           <FontAwesomeIcon
-            icon={faHourglassStart}
+            icon={iconsList[options[1]]}
             className="hour-glass-icon"
           />
-          Countdown
+          {options[1]}
         </Li>
         <Li
-          onClick={() => selectTimer("XY")}
-          className={timerType === "XY" ? "selected" : ""}
+          onClick={() => {
+            if (!!clickHandler) {
+              clickHandler("XY");
+            }
+          }}
+          className={tabPos === 3 ? "selected" : ""}
         >
-          <FontAwesomeIcon icon={faClock} className="clock-icon" />X Y
+          <FontAwesomeIcon
+            icon={iconsList[options[2]]}
+            className="clock-icon"
+          />{" "}
+          {options[2]}
         </Li>
         <Li
-          onClick={() => selectTimer("Tabata")}
-          className={timerType === "Tabata" ? "selected" : ""}
+          onClick={() => {
+            if (!!clickHandler) {
+              clickHandler("Tabata");
+            }
+          }}
+          className={tabPos === 4 ? "selected" : ""}
         >
-          <FontAwesomeIcon icon={faStopwatch20} className="stopwatch-icon" />
-          Tabata
+          <FontAwesomeIcon
+            icon={iconsList[options[3]]}
+            className="stopwatch-icon"
+          />
+          {options[3]}
         </Li>
       </TimerList>
-      <Tab left={tabPos} />
+      <Tab left={tabEM[tabPos]} />
     </ListPanel>
   );
 };
