@@ -5,6 +5,8 @@ import styled from "styled-components";
 import DocumentationView from "./views/DocumentationView";
 import TimersView from "./views/TimersView";
 import NavContainer from "./components/generic/NavContainer";
+import AddView from "./views/AddView";
+import QueueProvider from "./components/context/QueueContext";
 
 const Container = styled.div`
   background: #f0f6fb;
@@ -26,17 +28,25 @@ function App() {
               <li>
                 <Link to="/docs">Documentation</Link>
               </li>
+              <li>
+                <Link to="/add">Add</Link>
+              </li>
             </ul>
           </nav>
         </NavContainer>
-        <Switch>
-          <Route path="/docs">
-            <DocumentationView />
-          </Route>
-          <Route path="/">
-            <TimersView />
-          </Route>
-        </Switch>
+        <QueueProvider>
+          <Switch>
+            <Route path="/add">
+              <AddView />
+            </Route>
+            <Route path="/docs">
+              <DocumentationView />
+            </Route>
+            <Route path="/">
+              <TimersView />
+            </Route>
+          </Switch>
+        </QueueProvider>
       </Router>
     </Container>
   );

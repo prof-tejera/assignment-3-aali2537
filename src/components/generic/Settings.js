@@ -1,10 +1,10 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import Button from "./Button";
 import Input from "./Input";
 import Label from "./Label";
-import { TimerContext } from "../context/TimerContext";
 
 const Div = styled.div`
   text-align: center;
@@ -24,24 +24,24 @@ const FlexDiv = styled.div`
   align-items: baseline;
 `;
 
-const Settings = () => {
-  const {
-    flipped,
-    setFlipped,
-    minuteSetting,
-    setMinuteSetting,
-    secondSetting,
-    setSecondSetting,
-    maxRound,
-    setMaxRound,
-    workLength,
-    setWorkLength,
-    restLength,
-    setRestLength,
-    timerType,
-  } = useContext(TimerContext);
+const defaultSetting = {
+  seconds: 20,
+  minutes: 0,
+  rounds: 2,
+  workLength: 5,
+  restLength: 3,
+};
+
+const Settings = (props) => {
+  const [minuteSetting, setMinuteSetting] = useState(defaultSetting.minutes);
+  const [secondSetting, setSecondSetting] = useState(defaultSetting.seconds);
+  const [roundSetting, setRoundSetting] = useState(defaultSetting.rounds);
+  const [workLength, setWorkLength] = useState(defaultSetting.workLength);
+  const [restLength, setRestLength] = useState(defaultSetting.restLength);
+  const { timerType, addHandler } = props;
   const showRounds = timerType === "XY" || timerType === "Tabata";
   const showRoundType = timerType === "Tabata";
+  const history = useHistory();
 
   //Event handler to prevent user from entering anything but a number
   const onlyNumber = (e) => {
@@ -89,8 +89,8 @@ const Settings = () => {
             name="Rounds"
             placeholder="Total Rounds"
             onKeyPress={(e) => onlyNumber(e)}
-            onChange={(e) => setMaxRound(e.target.value)}
-            value={maxRound}
+            onChange={(e) => setRoundSetting(e.target.value)}
+            value={roundSetting}
           />
         </FlexDiv>
       )}
@@ -124,7 +124,17 @@ const Settings = () => {
         icon="save"
         top={80}
         left={50}
-        onClick={() => setFlipped(!flipped)}
+        onClick={() => {
+          addHandler(
+            secondSetting,
+            minuteSetting,
+            roundSetting,
+            workLength,
+            restLength,
+            timerType
+          );
+          history.push("/");
+        }}
       />
     </Div>
   );
