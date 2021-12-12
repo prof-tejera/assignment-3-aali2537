@@ -88,7 +88,7 @@ const Tab = styled.div`
   transition: ${transitionCurve};
 `;
 
-const TimerSelect = (props) => {
+const SlidingBar = (props) => {
   const { options, tabPos, clickHandler } = props;
 
   return (
@@ -97,7 +97,7 @@ const TimerSelect = (props) => {
         <Li
           onClick={() => {
             if (!!clickHandler) {
-              clickHandler("Stopwatch");
+              clickHandler(1);
             }
           }}
           className={tabPos === 1 ? "selected" : ""}
@@ -107,7 +107,7 @@ const TimerSelect = (props) => {
         <Li
           onClick={() => {
             if (!!clickHandler) {
-              clickHandler("Countdown");
+              clickHandler(2);
             }
           }}
           className={tabPos === 2 ? "selected" : ""}
@@ -121,7 +121,7 @@ const TimerSelect = (props) => {
         <Li
           onClick={() => {
             if (!!clickHandler) {
-              clickHandler("XY");
+              clickHandler(3);
             }
           }}
           className={tabPos === 3 ? "selected" : ""}
@@ -135,7 +135,7 @@ const TimerSelect = (props) => {
         <Li
           onClick={() => {
             if (!!clickHandler) {
-              clickHandler("Tabata");
+              clickHandler(4);
             }
           }}
           className={tabPos === 4 ? "selected" : ""}
@@ -152,4 +152,4 @@ const TimerSelect = (props) => {
   );
 };
 
-export default TimerSelect;
+export default SlidingBar;
