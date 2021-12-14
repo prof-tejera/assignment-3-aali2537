@@ -12,6 +12,8 @@ import Settings from "../generic/Settings";
 const circleSize = 450;
 const circleStroke = 20;
 
+const buttonSize = 70;
+
 const RelDiv = styled.div`
   position: relative;
 `;
@@ -88,6 +90,7 @@ const Timer = () => {
                 top={10}
                 left={90}
                 onClick={() => setFlipped(!flipped)}
+                size={buttonSize}
               />
             )}
           </TopButtonRow>
@@ -101,18 +104,21 @@ const Timer = () => {
               left={btnActive ? 20 : 50}
               top={40}
               onClick={() => setResetFlag(true)}
+              size={buttonSize}
             />
             <Button
               icon={"fast-forward"}
               left={btnActive ? 80 : 50}
               top={40}
               onClick={() => setFastForwardFlag(true)}
+              size={buttonSize}
             />
             <Button
               icon={timerActive ? "pause" : "play"}
               left={50}
               top={40}
               onClick={() => toggleTimer()}
+              size={buttonSize}
             />
           </BottomButtonRow>
         </FrontSide>

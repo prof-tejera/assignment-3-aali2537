@@ -9,6 +9,7 @@ import {
   faUndo,
   faCog,
   faCheck,
+  faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 
 const iconSize = 70;
@@ -22,6 +23,7 @@ const icons = {
   reset: faUndo,
   setting: faCog,
   save: faCheck,
+  x: faTimes,
 };
 
 const colors = {
@@ -31,11 +33,12 @@ const colors = {
   "fast-forward": "#5398BE",
   setting: "#CB9173",
   save: "#15cb61",
+  x: "#EF2D56",
 };
 
 const CircleButton = styled.div`
-  height: ${iconSize}px;
-  width: ${iconSize}px;
+  height: ${(props) => props.size}px;
+  width: ${(props) => props.size}px;
   position: relative;
   display: table-cell;
   vertical-align: middle;
@@ -91,8 +94,8 @@ const Pulse = keyframes`
 
 const Wrapper = styled.div`
   position: absolute;
-  height: ${iconSize}px;
-  width: ${iconSize}px;
+  height: ${(props) => props.size}px;
+  width: ${(props) => props.size}px;
   left: ${(props) => props.left}%;
   top: ${(props) => props.top}%;
   transition: ${transitionCurve};
@@ -110,7 +113,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Button = ({ icon, onClick, left, top }) => {
+const Button = ({ icon, onClick, left, top, size }) => {
   const addPulse = (e) => {
     e.currentTarget.classList.add("pulse");
   };
@@ -120,10 +123,10 @@ const Button = ({ icon, onClick, left, top }) => {
   };
 
   return (
-    <Wrapper top={top} left={left}>
+    <Wrapper top={top} left={left} size={size}>
       <div onClick={(e) => addPulse(e)} onAnimationEnd={(e) => removePulse(e)}>
         <div onClick={onClick}>
-          <CircleButton icon={icon}>
+          <CircleButton icon={icon} size={size}>
             <FontAwesomeIcon icon={icons[icon]} />
           </CircleButton>
         </div>
@@ -140,6 +143,7 @@ Button.propTypes = {
     "save",
     "setting",
     "fast-forward",
+    "x",
   ]),
   left: PropTypes.number,
   top: PropTypes.number,
