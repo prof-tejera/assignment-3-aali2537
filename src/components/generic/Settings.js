@@ -118,6 +118,7 @@ const Settings = (props) => {
         icon="save"
         top={80}
         left={50}
+        size={70}
         onClick={() => {
           addHandler(
             secondSetting,
