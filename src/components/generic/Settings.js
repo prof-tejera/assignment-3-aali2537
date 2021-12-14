@@ -5,17 +5,11 @@ import { useHistory } from "react-router-dom";
 import Button from "./Button";
 import Input from "./Input";
 import Label from "./Label";
+import SubLabel from "./SubLabel";
 
 const Div = styled.div`
   text-align: center;
   height: 100%;
-`;
-
-const SubLabel = styled(Label)`
-  font-size: 1em;
-  text-align: left;
-  margin-left: 1em;
-  flex: 0.5;
 `;
 
 const FlexDiv = styled.div`
