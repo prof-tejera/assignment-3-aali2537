@@ -4,10 +4,11 @@ import styled from "styled-components";
 import Timer from "../components/timers/Timer";
 import TimerProvider from "../components/context/TimerContext";
 import SlidingBar from "../components/generic/SlidingBar";
+import NonActiveQueue from "../components/generic/NonActiveQueue";
 
 import { QueueContext } from "../components/context/QueueContext";
 
-const TimerContainer = styled.div`
+const QueueViewContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,16 +17,9 @@ const TimerContainer = styled.div`
 function App() {
   const { timerQueue, addTimer } = useContext(QueueContext);
   return (
-    <TimerProvider>
-      <TimerContainer>
-        <SlidingBar
-          timerType="Stopwatch"
-          options={["Stopwatch", "Stopwatch", "XY", "Tabata"]}
-          tabPos={2}
-        />
-        <Timer />
-      </TimerContainer>
-    </TimerProvider>
+    <QueueViewContainer>
+      <NonActiveQueue></NonActiveQueue>
+    </QueueViewContainer>
   );
 }
 

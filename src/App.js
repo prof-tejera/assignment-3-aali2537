@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import styled from "styled-components";
 
 import DocumentationView from "./views/DocumentationView";
-import TimersView from "./views/TimersView";
+import QueueView from "./views/QueueView";
 import NavContainer from "./components/generic/NavContainer";
 import AddView from "./views/AddView";
 import QueueProvider from "./components/context/QueueContext";
@@ -43,7 +43,7 @@ function App() {
               <DocumentationView />
             </Route>
             <Route path="/">
-              <TimersView />
+              <QueueView />
             </Route>
           </Switch>
         </QueueProvider>
