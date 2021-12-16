@@ -77,6 +77,7 @@ const Timer = () => {
     setFastForwardFlag,
     setResetFlag,
     showSettings,
+    percent,
   } = useContext(TimerContext);
 
   return (
@@ -95,7 +96,11 @@ const Timer = () => {
             )}
           </TopButtonRow>
           <RelDiv>
-            <Circle size={circleSize} strokeWidth={circleStroke} />
+            <Circle
+              size={circleSize}
+              strokeWidth={circleStroke}
+              percent={percent}
+            />
             <TextDisplay />
           </RelDiv>
           <BottomButtonRow>

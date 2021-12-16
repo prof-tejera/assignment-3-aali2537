@@ -3,7 +3,6 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 
 import { calcRadius, calcCircum, calcOffset } from "../../utils/helpers";
-import { TimerContext } from "../context/TimerContext";
 
 const progressColor = "#a80874";
 
@@ -19,9 +18,7 @@ const ProgressCircle = styled.circle`
   transition: all 0.3s ease-out;
 `;
 
-const Circle = ({ size, strokeWidth }) => {
-  const { percent } = useContext(TimerContext);
-
+const Circle = ({ size, strokeWidth, percent }) => {
   return (
     <svg width={size} height={size}>
       <ProgressCircle
