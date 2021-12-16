@@ -71,7 +71,8 @@ const CircleButton = styled.div`
   }
 
   &::after {
-    box-shadow: inset 0 0 0 2px ${(props) => colors[props.icon]};
+    box-shadow: inset 0 0 0 ${(props) => (props.border ? 2 : 0)}px
+      ${(props) => colors[props.icon]};
   }
 
   &::before {
@@ -80,7 +81,7 @@ const CircleButton = styled.div`
   }
 
   &:hover::before {
-    box-shadow: inset 0 0 0 1px ${panelBackground};
+    box-shadow: inset 0 0 0 0px ${panelBackground};
   }
 
   svg {
@@ -120,7 +121,7 @@ const Wrapper = styled.div`
   }
 `;
 
-const Button = ({ icon, onClick, left, top, size }) => {
+const Button = ({ icon, onClick, left, top, size, border }) => {
   const addPulse = (e) => {
     e.currentTarget.classList.add("pulse");
   };
@@ -133,7 +134,7 @@ const Button = ({ icon, onClick, left, top, size }) => {
     <Wrapper top={top} left={left} size={size}>
       <div onClick={(e) => addPulse(e)} onAnimationEnd={(e) => removePulse(e)}>
         <div onClick={onClick}>
-          <CircleButton icon={icon} size={size}>
+          <CircleButton icon={icon} size={size} border={border}>
             <FontAwesomeIcon icon={icons[icon]} />
           </CircleButton>
         </div>
