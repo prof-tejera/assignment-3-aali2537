@@ -10,6 +10,8 @@ import {
   faCog,
   faCheck,
   faTimes,
+  faArrowRight,
+  faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
 const iconSize = 70;
@@ -24,6 +26,8 @@ const icons = {
   setting: faCog,
   save: faCheck,
   x: faTimes,
+  right: faArrowRight,
+  left: faArrowLeft,
 };
 
 const colors = {
@@ -34,6 +38,8 @@ const colors = {
   setting: "#CB9173",
   save: "#15cb61",
   x: "#EF2D56",
+  right: "#a80874",
+  left: "#a80874",
 };
 
 const CircleButton = styled.div`
@@ -47,6 +53,7 @@ const CircleButton = styled.div`
   transition: all 0.5s;
   opacity: 1;
   box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
+  text-align: center;
 
   button {
     position: absolute;
@@ -64,7 +71,7 @@ const CircleButton = styled.div`
   }
 
   &::after {
-    box-shadow: inset 0 0 0 1px ${(props) => colors[props.icon]};
+    box-shadow: inset 0 0 0 2px ${(props) => colors[props.icon]};
   }
 
   &::before {
@@ -144,6 +151,8 @@ Button.propTypes = {
     "setting",
     "fast-forward",
     "x",
+    "right",
+    "left",
   ]),
   left: PropTypes.number,
   top: PropTypes.number,
