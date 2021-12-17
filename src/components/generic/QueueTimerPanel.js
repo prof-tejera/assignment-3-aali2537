@@ -1,17 +1,22 @@
-import React from "react";
-import styled from "styled-components";
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
 
 import Panel from "./Panel";
 import Label from "./Label";
 import Button from "./Button";
 import Circle from "./Circle";
 
+const panel_height = 18;
+const panel_width = 14;
+
 const FlipContainer = styled.div`
   perspective: 1000px;
-`;
+  @media (max-width: 1200px) {
+    font-size: 12px;
+  }
 
-const panel_height = 16;
-const panel_width = 14;
+  font-size: 14px;
+`;
 
 const Flipper = styled(Panel)`
   &:hover {
@@ -28,7 +33,6 @@ const Flipper = styled(Panel)`
 
 const FrontSide = styled.div`
   -webkit-backface-visibility: hidden;
-  transform-style: preserve-3d;
   background-color: #0f242e;
   position: absolute;
   top: 0;
@@ -37,6 +41,8 @@ const FrontSide = styled.div`
   height: ${panel_height}em;
   width: ${panel_width}em;
   padding-top: 1em;
+  z-index: 2;
+  transform: rotateY(0deg);
 `;
 
 const BackSide = styled(FrontSide)`
@@ -47,6 +53,7 @@ const BackSide = styled(FrontSide)`
   overflow: hidden;
   border-radius: 1em;
   padding-top: 0;
+  z-index: -1;
 `;
 
 const TopButtonRow = styled.div`
@@ -70,6 +77,11 @@ const PanelLabel = styled(Label)`
   margin-right: 1em;
 `;
 
+const RelDiv = styled.div`
+  position: relative;
+  margin-top: 1em;
+`;
+
 const QueueTimerPanel = ({
   timerType,
   secondSetting,
@@ -77,6 +89,7 @@ const QueueTimerPanel = ({
   roundSetting,
   workLength,
   restLength,
+  removeHandler,
 }) => {
   const showRounds = timerType === "XY" || timerType === "Tabata";
   const showRoundType = timerType === "Tabata";
@@ -85,12 +98,28 @@ const QueueTimerPanel = ({
     <FlipContainer>
       <Flipper>
         <FrontSide>
-          <Label>Countdown</Label>
+          <Label>{timerType}</Label>
+          <RelDiv>
+            <Circle size={150} strokeWidth={10} percent={100} />
+          </RelDiv>
         </FrontSide>
         <BackSide>
           <TopButtonRow>
-            <Button icon={"x"} top={5} left={95} size={50}></Button>
+            <Button
+              icon={"x"}
+              top={0}
+              left={95}
+              size={50}
+              border={true}
+              onClick={removeHandler}
+            />
           </TopButtonRow>
+          {showRounds && (
+            <FlexDiv>
+              <PanelLabel>Rounds: </PanelLabel>
+              <PanelLabel>{roundSetting}</PanelLabel>
+            </FlexDiv>
+          )}
           {!showRoundType && (
             <FlexDiv>
               <PanelLabel>Minutes: </PanelLabel>
@@ -101,12 +130,6 @@ const QueueTimerPanel = ({
             <FlexDiv>
               <PanelLabel>Seconds: </PanelLabel>
               <PanelLabel>{secondSetting}</PanelLabel>
-            </FlexDiv>
-          )}
-          {showRounds && (
-            <FlexDiv>
-              <PanelLabel>Rounds: </PanelLabel>
-              <PanelLabel>{roundSetting}</PanelLabel>
             </FlexDiv>
           )}
           {showRoundType && (

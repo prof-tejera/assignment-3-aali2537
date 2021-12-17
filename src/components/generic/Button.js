@@ -54,6 +54,7 @@ const CircleButton = styled.div`
   opacity: 1;
   box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
   text-align: center;
+  z-index: 1;
 
   button {
     position: absolute;

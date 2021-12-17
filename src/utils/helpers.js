@@ -70,3 +70,24 @@ export function calcRoundTime(
   }
   return 0;
 }
+
+export function totalTime(
+  timerType,
+  minuteSetting,
+  secondSetting,
+  workLength,
+  restLength,
+  roundSetting
+) {
+  if (timerType === "Stopwatch" || timerType === "Countdown") {
+    return minuteSetting * 60000 + secondSetting * 100;
+  }
+
+  if (timerType === "XY") {
+    return (minuteSetting * 60000 + secondSetting * 1000) * roundSetting;
+  }
+
+  if (timerType === "Tabata") {
+    return (workLength * 100 + restLength * 100) * roundSetting;
+  }
+}
