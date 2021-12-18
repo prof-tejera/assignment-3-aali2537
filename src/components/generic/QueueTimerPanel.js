@@ -10,26 +10,28 @@ import Circle from "./Circle";
 const panel_height = 18;
 const panel_width = 14;
 
-const FlipContainer = styled.div`
-  perspective: 1000px;
-  @media (max-width: 1200px) {
-    font-size: 12px;
-  }
-
-  font-size: 14px;
-`;
-
 const Flipper = styled(Panel)`
-  &:hover {
-    transform: rotateY(${(props) => (props.disableHover ? 0 : 180)}deg);
-  }
-  transition: 0.6s;
+  transition: 0.5s;
   transform-style: preserve-3d;
   position: relative;
   height: ${panel_height}em;
   width: ${panel_width}em;
   margin: 0;
   padding: 0;
+`;
+
+const FlipContainer = styled.div`
+  @media (max-width: 1200px) {
+    font-size: 12px;
+  }
+
+  font-size: 14px;
+  perspective: 1000px;
+
+  &:hover ${Flipper} {
+    ${console.log("entered")}
+    transform: rotateY(${(props) => (props.disableHover ? 0 : 180)}deg);
+  }
 `;
 
 const FrontSide = styled.div`
@@ -97,8 +99,8 @@ const QueueTimerPanel = ({
   const showRoundType = timerType === "Tabata";
 
   return (
-    <FlipContainer>
-      <Flipper disableHover={disableHover}>
+    <FlipContainer disableHover={disableHover}>
+      <Flipper>
         <FrontSide>
           <Label>{timerType}</Label>
           <RelDiv>

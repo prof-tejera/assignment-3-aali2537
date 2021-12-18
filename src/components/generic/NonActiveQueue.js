@@ -4,6 +4,7 @@ import styled from "styled-components";
 import Panel from "./Panel";
 import Label from "./Label";
 import QueueOverview from "./QueueOverview";
+import SquareButton from "./SquareButton";
 
 const TitlePanel = styled(Panel)`
   background-color: #0f242e;
@@ -43,6 +44,8 @@ const NonActiveQueue = () => {
         </div>
       </TitlePanel>
       <QueueOverview></QueueOverview>
+      <SquareButton text={"Start"}></SquareButton>
+      <SquareButton text={"Add"}></SquareButton>
     </Flex>
   );
 };

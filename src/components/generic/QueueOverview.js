@@ -2,11 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import styled, { keyframes, css } from "styled-components";
 
 import { QueueContext } from "../context/QueueContext";
-import Panel from "./Panel";
 import QueueTimerPanel from "./QueueTimerPanel";
 import Button from "./Button";
-
-const transitionCurve = "cubic-bezier(0.81, -0.21, 0.24, 1.09)";
 
 const Fade = keyframes`
   0% {
@@ -140,9 +137,7 @@ const QueueOverview = () => {
     }
   }, [timers]);
 
-  useEffect(() => {
-    console.log(disableHover);
-  }, [disableHover]);
+  useEffect(() => {}, [disableHover]);
 
   return (
     <Container>
