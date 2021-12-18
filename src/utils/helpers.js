@@ -71,7 +71,7 @@ export function calcRoundTime(
   return 0;
 }
 
-export function totalTime(
+export function calcTotalTime(
   timerType,
   minuteSetting,
   secondSetting,

@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 
+import { calcTotalTime } from "../../utils/helpers";
+
 export const QueueContext = React.createContext({});
 
 const testQueue = [
@@ -55,6 +57,7 @@ const testQueue = [
 
 const QueueProvider = ({ children }) => {
   const [timerQueue, setTimerQueue] = useState(testQueue);
+  const [totalTime, setTotalTime] = useState(0);
 
   //Exposed to context subscribers to add a timer to the queue
   const addTimer = (
@@ -75,6 +78,17 @@ const QueueProvider = ({ children }) => {
       timerType: timerType,
     };
 
+    setTotalTime(
+      totalTime +
+        calcTotalTime(
+          timerType,
+          minuteSetting,
+          secondSetting,
+          workLength,
+          restLength,
+          roundSetting
+        )
+    );
     queue.push(newTimer);
     setTimerQueue(queue);
   };
