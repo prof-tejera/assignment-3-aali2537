@@ -8,13 +8,12 @@ const Panel = styled.div`
   padding-top: 3em;
   padding-bottom: 3em;
   border-radius: 1em;
-  @media (min-width: 1200px) {
+
+  @media (min-width: 1600px) {
     margin-bottom: 3em;
   }
-  @media (min-width: 1600px) {
-    margin-bottom: 4em;
-  }
-  @media (min-width: 1900px) {
+
+  @media (min-width: 1900) {
     margin-bottom: 4em;
   }
 `;

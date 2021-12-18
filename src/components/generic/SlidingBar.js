@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faStopwatch,
@@ -31,16 +32,13 @@ const ListPanel = styled(Panel)`
   position: relative;
   background-color: #0f242e;
   font-size: 16px;
-  @media (max-width: 100px) {
-    font-size: 14px;
+  @media (max-width: 1000px) {
+    font-size: 15px;
   }
   @media (min-width: 1200px) {
     margin-bottom: 3em;
   }
   @media (min-width: 1600px) {
-    margin-bottom: 4em;
-  }
-  @media (min-width: 1900) {
     margin-bottom: 4em;
   }
 `;
@@ -101,9 +99,7 @@ const Tab = styled.div`
   transition: ${transitionCurve};
 `;
 
-const SlidingBar = (props) => {
-  const { options, tabPos, clickHandler } = props;
-
+const SlidingBar = ({ options, tabPos, clickHandler }) => {
   return (
     <ListPanel>
       <TimerList>
@@ -163,6 +159,12 @@ const SlidingBar = (props) => {
       <Tab left={tabEM[tabPos]} />
     </ListPanel>
   );
+};
+
+SlidingBar.propTypes = {
+  options: PropTypes.array,
+  tabPos: PropTypes.number,
+  clickHandler: PropTypes.func,
 };
 
 export default SlidingBar;

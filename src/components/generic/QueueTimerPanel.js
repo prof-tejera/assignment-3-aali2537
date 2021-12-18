@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import styled, { keyframes } from "styled-components";
+import React from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import Panel from "./Panel";
 import Label from "./Label";
@@ -149,6 +150,17 @@ const QueueTimerPanel = ({
       </Flipper>
     </FlipContainer>
   );
+};
+
+QueueTimerPanel.propTypes = {
+  timerType: PropTypes.oneOf(["Stopwatch", "Countdown", "XY", "Tabata"]),
+  secondSetting: PropTypes.number,
+  minuteSetting: PropTypes.number,
+  roundSetting: PropTypes.number,
+  workLength: PropTypes.number,
+  restLength: PropTypes.number,
+  removeHandler: PropTypes.func,
+  disableHover: PropTypes.bool,
 };
 
 export default QueueTimerPanel;
