@@ -158,6 +158,7 @@ Button.propTypes = {
   ]),
   left: PropTypes.number,
   top: PropTypes.number,
+  border: PropTypes.bool,
 };
 
 export default Button;

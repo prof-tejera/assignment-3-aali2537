@@ -36,7 +36,7 @@ const PanelContainer = styled.div`
   top: 50%;
 
   animation-name: ${(props) => {
-    if (props.animate()) {
+    if (props.animate) {
       if (props.keyFrame === "Fade") {
         return css`
           ${Fade}
@@ -108,6 +108,31 @@ const QueueOverview = () => {
     setDisableHover(true);
   };
 
+  //Calculates position of each timer panel
+  const calcPosition = (index) => {
+    if (index >= slideFrom) {
+      //Sliding left to right
+      if (slideDirection === "left") {
+        return leftPositions[index + 2];
+      } else {
+        //Sliding right to left
+        return leftPositions[index];
+      }
+    } else {
+      //No slide
+      return leftPositions[index + 1];
+    }
+  };
+
+  //Calculates if current panel index should be animated
+  const shouldAnimate = (index) => {
+    //Panels affected by slide and animation
+    if (animateIndex === index || index >= slideFrom) {
+      return true;
+    }
+    return false;
+  };
+
   //If all timers in current page get deleted move to previous full page
   useEffect(() => {
     if (timers.length === 0 && currPos !== 0) {
@@ -137,29 +162,9 @@ const QueueOverview = () => {
             return (
               <PanelContainer
                 slideDirection={slideDirection}
-                left={(function () {
-                  if (index >= slideFrom) {
-                    //Sliding left to right
-                    if (slideDirection === "left") {
-                      return leftPositions[index + 2];
-                    } else {
-                      //Sliding right to left
-                      return leftPositions[index];
-                    }
-                  } else {
-                    //No slide
-                    return leftPositions[index + 1];
-                  }
-                })()}
+                left={calcPosition(index)}
                 key={index + currPos}
-                animate={() => {
-                  //Panels affected by slide and animation
-                  if (animateIndex === index || index >= slideFrom) {
-                    return true;
-                  } else {
-                    return false;
-                  }
-                }}
+                animate={shouldAnimate(index)}
                 i={index}
                 keyFrame={keyFrame}
                 onAnimationEnd={() => {
