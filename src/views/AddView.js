@@ -18,6 +18,12 @@ const SettingContainer = styled(Panel)`
   height: 38em;
   width: 28.1em;
   padding-top: 1em;
+  @media (max-width: 1200px) {
+    font-size: 12px;
+  }
+  @media (max-width: 1600px) {
+    font-size: 13px;
+  }
 `;
 
 const addOptions = ["Stopwatch", "Countdown", "XY", "Tabata"];

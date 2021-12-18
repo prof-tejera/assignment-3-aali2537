@@ -119,6 +119,7 @@ const Settings = (props) => {
         top={80}
         left={50}
         size={70}
+        border={true}
         onClick={() => {
           addHandler(
             secondSetting,

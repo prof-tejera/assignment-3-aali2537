@@ -11,6 +11,9 @@ const TitlePanel = styled(Panel)`
   padding-right: 4em;
   padding-top: 1em;
   padding-bottom: 1em;
+  @media (max-width: 1200px) {
+    font-size: 14px;
+  }
 `;
 
 const SubTitle = styled(Label)`

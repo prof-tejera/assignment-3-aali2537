@@ -12,6 +12,12 @@ const Input = styled.input`
   padding-right: 3em;
   margin-right: 1em;
   flex: 1;
+  @media (max-width: 1200px) {
+    font-size: 12px;
+  }
+  @media (max-width: 1600px) {
+    font-size: 12px;
+  }
 `;
 
 export default Input;

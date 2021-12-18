@@ -3,8 +3,9 @@ import styled from "styled-components";
 const NavContainer = styled.div`
   background-color: #186bf2;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.23);
-  margin-bottom: 3%;
-
+  @media (min-width: 1600px) {
+    margin-bottom: 4em;
+  }
   ul {
     margin-top: 0;
     list-style: none;
