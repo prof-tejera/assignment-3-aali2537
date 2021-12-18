@@ -53,13 +53,13 @@ const TimerList = styled.ul`
   margin: 0;
   z-index: 2;
 
-  .clock-icon,
-  .hour-glass-icon {
+  & .fa-clock,
+  & .fa-hourglass-start {
     font-size: 0.87em;
     margin-right: 0.5em;
   }
 
-  .stopwatch-icon {
+  & .fa-stopwatch-20 {
     margin-right: 0.4em;
   }
 
@@ -121,10 +121,7 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
           }}
           className={tabPos === 2 ? "selected" : ""}
         >
-          <FontAwesomeIcon
-            icon={iconsList[options[1]]}
-            className="hour-glass-icon"
-          />
+          <FontAwesomeIcon icon={iconsList[options[1]]} />
           {options[1]}
         </Li>
         <Li
@@ -135,11 +132,7 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
           }}
           className={tabPos === 3 ? "selected" : ""}
         >
-          <FontAwesomeIcon
-            icon={iconsList[options[2]]}
-            className="clock-icon"
-          />{" "}
-          {options[2]}
+          <FontAwesomeIcon icon={iconsList[options[2]]} /> {options[2]}
         </Li>
         <Li
           onClick={() => {
@@ -149,10 +142,7 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
           }}
           className={tabPos === 4 ? "selected" : ""}
         >
-          <FontAwesomeIcon
-            icon={iconsList[options[3]]}
-            className="stopwatch-icon"
-          />
+          <FontAwesomeIcon icon={iconsList[options[3]]} />
           {options[3]}
         </Li>
       </TimerList>
