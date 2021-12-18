@@ -20,7 +20,7 @@ const FlipContainer = styled.div`
 
 const Flipper = styled(Panel)`
   &:hover {
-    transform: rotateY(180deg);
+    transform: rotateY(${(props) => (props.disableHover ? 0 : 180)}deg);
   }
   transition: 0.6s;
   transform-style: preserve-3d;
@@ -90,17 +90,18 @@ const QueueTimerPanel = ({
   workLength,
   restLength,
   removeHandler,
+  disableHover,
 }) => {
   const showRounds = timerType === "XY" || timerType === "Tabata";
   const showRoundType = timerType === "Tabata";
 
   return (
     <FlipContainer>
-      <Flipper>
+      <Flipper disableHover={disableHover}>
         <FrontSide>
           <Label>{timerType}</Label>
           <RelDiv>
-            <Circle size={150} strokeWidth={10} percent={100} />
+            <Circle size={160} strokeWidth={10} percent={100} />
           </RelDiv>
         </FrontSide>
         <BackSide>

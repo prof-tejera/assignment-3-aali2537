@@ -17,9 +17,9 @@ const Fade = keyframes`
   }
 `;
 
-const Slide = (left) => keyframes`
+const Slide = (left, slideDirection) => keyframes`
   100% {
-    left: ${left - 25}%;
+    left: ${slideDirection === "left" ? left - 25 : left + 25}%;
   }
 `;
 
@@ -43,7 +43,7 @@ const PanelContainer = styled.div`
         `;
       } else {
         return css`
-          ${Slide(props.left)}
+          ${Slide(props.left, props.slideDirection)}
         `;
       }
     }
@@ -75,17 +75,24 @@ const QueueOverview = () => {
   const [slideFrom, setSlideFrom] = useState(4);
   const [animateIndex, setAnimateIndex] = useState(false);
   const [keyFrame, setKeyFrame] = useState("Fade");
-  const leftPositions = [15, 40, 65, 90, 115];
+  const [disableHover, setDisableHover] = useState(false);
+  const [slideDirection, setSlideDirection] = useState("left");
+  const leftPositions = [-10, 15, 40, 65, 90, 115];
   const hideLeft = currPos === 0;
   const hideRight = currPos + 4 >= totalLength();
 
   //Event handler to scroll through queue
   const changePos = (direction) => {
     if (direction === "left") {
+      setSlideDirection("right");
       setCurrPos(currPos - 4);
     } else if (direction === "right") {
+      setSlideDirection("left");
       setCurrPos(currPos + 4);
     }
+    //Sliding animation
+    setKeyFrame("Slide");
+    setSlideFrom(0);
   };
 
   //Repopulate timer list after scroll button is clicked
@@ -97,13 +104,20 @@ const QueueOverview = () => {
   const removePanel = (index) => {
     setAnimateIndex(index);
     setKeyFrame("Fade");
+    setSlideDirection("left");
+    setDisableHover(true);
   };
 
+  //If all timers in current page get deleted move to previous full page
   useEffect(() => {
     if (timers.length === 0 && currPos !== 0) {
       setCurrPos(currPos - 4);
     }
   }, [timers]);
+
+  useEffect(() => {
+    console.log(disableHover);
+  }, [disableHover]);
 
   return (
     <Container>
@@ -122,13 +136,24 @@ const QueueOverview = () => {
           {timers.map((timer, index) => {
             return (
               <PanelContainer
-                left={
-                  index >= slideFrom
-                    ? leftPositions[index + 1]
-                    : leftPositions[index]
-                }
+                slideDirection={slideDirection}
+                left={(function () {
+                  if (index >= slideFrom) {
+                    //Sliding left to right
+                    if (slideDirection === "left") {
+                      return leftPositions[index + 2];
+                    } else {
+                      //Sliding right to left
+                      return leftPositions[index];
+                    }
+                  } else {
+                    //No slide
+                    return leftPositions[index + 1];
+                  }
+                })()}
                 key={index + currPos}
                 animate={() => {
+                  //Panels affected by slide and animation
                   if (animateIndex === index || index >= slideFrom) {
                     return true;
                   } else {
@@ -138,8 +163,7 @@ const QueueOverview = () => {
                 i={index}
                 keyFrame={keyFrame}
                 onAnimationEnd={() => {
-                  console.log(index, keyFrame);
-
+                  //Panel Fading and sliding animation logic
                   if (keyFrame === "Fade") {
                     removeTimer(animateIndex + currPos);
                     setAnimateIndex(false);
@@ -150,7 +174,12 @@ const QueueOverview = () => {
                     if (index === timers.length - 1) {
                       setKeyFrame("Fade");
                       setSlideFrom(4);
+                      setDisableHover(false);
                     }
+                  }
+                  //When last animation is complete let user be able to flip cards again
+                  if (index === timers.length - 1) {
+                    setDisableHover(false);
                   }
                 }}
               >
@@ -164,6 +193,7 @@ const QueueOverview = () => {
                   removeHandler={() => {
                     removePanel(index);
                   }}
+                  disableHover={disableHover}
                 />
               </PanelContainer>
             );
