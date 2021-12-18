@@ -13,7 +13,7 @@ const Panel = styled.div`
     margin-bottom: 3em;
   }
 
-  @media (min-width: 1900) {
+  @media (min-width: 1900px) {
     margin-bottom: 4em;
   }
 `;
