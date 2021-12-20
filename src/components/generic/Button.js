@@ -43,10 +43,7 @@ const colors = {
 
 const CircleButton = styled.div`
   height: ${(props) => props.size}px;
-  width: ${(props) => {
-    console.log(props.size);
-    return props.size;
-  }}px;
+  width: ${(props) => props.size}px;
   position: relative;
   display: table-cell;
   vertical-align: middle;
