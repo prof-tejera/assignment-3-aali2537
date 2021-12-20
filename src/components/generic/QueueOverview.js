@@ -4,15 +4,7 @@ import styled, { keyframes, css } from "styled-components";
 import { QueueContext } from "../context/QueueContext";
 import QueueTimerPanel from "./QueueTimerPanel";
 import Button from "./Button";
-
-const Fade = keyframes`
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-`;
+import FadeOut from "./FadeOut";
 
 const Slide = (left, slideDirection) => keyframes`
   100% {
@@ -36,7 +28,7 @@ const PanelContainer = styled.div`
     if (props.animate) {
       if (props.keyFrame === "Fade") {
         return css`
-          ${Fade}
+          ${FadeOut}
         `;
       } else {
         return css`

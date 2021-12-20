@@ -5,11 +5,14 @@ import SlidingBar from "../components/generic/SlidingBar";
 import Settings from "../components/generic/Settings";
 import Panel from "../components/generic/Panel";
 import { QueueContext } from "../components/context/QueueContext";
+import FadeIn from "../components/generic/FadeIn";
 
 const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${FadeIn} 0.5s ease;
+  animation-fill-mode: forwards;
 `;
 
 const SettingContainer = styled(Panel)`

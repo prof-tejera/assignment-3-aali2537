@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -9,7 +9,7 @@ import { QueueContext } from "../context/QueueContext";
 import QueueOverview from "./QueueOverview";
 import SquareButton from "./SquareButton";
 import { convertFromMs } from "../../utils/helpers";
-import { useEffect } from "react/cjs/react.development";
+import FadeIn from "./FadeIn";
 
 const TitlePanel = styled(Panel)`
   background-color: #0f242e;
@@ -31,6 +31,8 @@ const Flex = styled.div`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  animation: ${FadeIn} ease 0.5s;
+  animation-fill-mode: forwards;
   @media (min-width: 1600px) {
     width: 80%;
   }
@@ -70,10 +72,8 @@ const NonActiveQueue = ({ startHandler }) => {
         <div>
           {showTime && (
             <SubTitle>
-              Total Time:
-              {formattedTime.minutes === 0
-                ? ""
-                : `${formattedTime.minutes}M`}{" "}
+              Total Time:{" "}
+              {formattedTime.minutes === 0 ? "" : `${formattedTime.minutes}M`}{" "}
               {formattedTime.seconds === 0 ? "" : `${formattedTime.seconds}S`}
             </SubTitle>
           )}

@@ -7,11 +7,14 @@ import Timer from "../timers/Timer";
 import { QueueContext } from "../context/QueueContext";
 import SquareButton from "./SquareButton";
 import { TimerContext } from "../context/TimerContext";
+import FadeIn from "./FadeIn";
 
 const FlexBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: ${FadeIn} 0.5s ease;
+  animation-fill-mode: forwards;
 `;
 
 const ActiveQueue = ({ editHandler }) => {
