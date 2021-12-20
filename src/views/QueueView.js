@@ -16,7 +16,7 @@ function App() {
   return (
     <QueueViewContainer>
       {queueActive ? (
-        <ActiveQueue />
+        <ActiveQueue editHandler={() => setQueueActive(false)} />
       ) : (
         <NonActiveQueue startHandler={() => setQueueActive(true)} />
       )}

@@ -4,7 +4,7 @@ const NavContainer = styled.div`
   background-color: #186bf2;
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.23);
   @media (min-width: 1600px) {
-    margin-bottom: 4em;
+    margin-bottom: 2em;
   }
   ul {
     margin-top: 0;

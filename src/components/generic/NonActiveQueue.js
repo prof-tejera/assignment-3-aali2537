@@ -80,9 +80,13 @@ const NonActiveQueue = ({ startHandler }) => {
         </div>
       </TitlePanel>
       <QueueOverview />
-      <ButtonsContainer onClick={startHandler}>
+      <ButtonsContainer>
         {showStart && (
-          <SquareButton type={"Start"} enterFrom={"Left"}></SquareButton>
+          <SquareButton
+            type={"Start"}
+            enterFrom={"Left"}
+            clickHandler={startHandler}
+          ></SquareButton>
         )}
         <SquareButton
           type={"Add"}

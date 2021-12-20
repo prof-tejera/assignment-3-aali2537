@@ -5,6 +5,7 @@ import SlidingBar from "./SlidingBar";
 import Timer from "../timers/Timer";
 import { QueueContext } from "../context/QueueContext";
 import TimerProvider from "../context/TimerContext";
+import SquareButton from "./SquareButton";
 
 const FlexBox = styled.div`
   display: flex;
@@ -12,7 +13,7 @@ const FlexBox = styled.div`
   align-items: center;
 `;
 
-const ActiveQueue = () => {
+const ActiveQueue = ({ editHandler }) => {
   const { getTimers } = useContext(QueueContext);
   const [currPos, setCurrPos] = useState(0);
 
@@ -31,6 +32,11 @@ const ActiveQueue = () => {
         <SlidingBar options={getSlidingBarOptions()} tabPos={currPos + 1} />
         <Timer />
       </TimerProvider>
+      <SquareButton
+        type={"Edit"}
+        enterFrom={"Left"}
+        clickHandler={editHandler}
+      />
     </FlexBox>
   );
 };

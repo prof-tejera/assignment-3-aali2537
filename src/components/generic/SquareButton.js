@@ -2,7 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusSquare, faBiking } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPlusSquare,
+  faBiking,
+  faHammer,
+} from "@fortawesome/free-solid-svg-icons";
 
 import Panel from "./Panel";
 import Label from "./Label";
@@ -10,11 +14,13 @@ import Label from "./Label";
 const icons = {
   Start: faBiking,
   Add: faPlusSquare,
+  Edit: faHammer,
 };
 
 const colors = {
   Start: "#15cb61",
   Add: "#ED7D3A",
+  Edit: "#a80874",
 };
 
 const ButtonLabel = styled(Label)`
@@ -98,7 +104,7 @@ const SquareButton = ({ type, clickHandler, enterFrom }) => {
 };
 
 SquareButton.propTypes = {
-  type: PropTypes.oneOf(["Start", "Add"]),
+  type: PropTypes.oneOf(["Start", "Add", "Edit"]),
   clickHandler: PropTypes.func,
   enterFrom: PropTypes.oneOf(["Left", "Right"]),
 };

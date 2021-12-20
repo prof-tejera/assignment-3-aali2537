@@ -39,15 +39,15 @@ const Container = styled(Panel)`
 
   background-color: #0f242e;
   @media (max-width: 1900px) {
-    font-size: 15px;
-  }
-
-  @media (max-width: 1600px) {
     font-size: 13px;
   }
 
-  @media (max-width: 1200px) {
+  @media (max-width: 1600px) {
     font-size: 12px;
+  }
+
+  @media (max-width: 1200px) {
+    font-size: 11px;
   }
 `;
 
@@ -76,10 +76,10 @@ const Timer = () => {
     const width = window.innerWidth;
 
     if (width <= 1000) {
-      return 12 * widthEm;
+      return 11 * widthEm;
     }
     if (width <= 1600) {
-      return 13 * widthEm;
+      return 12 * widthEm;
     }
     return 15 * widthEm;
   };
