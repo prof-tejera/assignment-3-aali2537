@@ -170,6 +170,7 @@ const TimerProvider = ({ children }) => {
     if (resetFlag) {
       QueueFinished(true);
       setResetFlag(false);
+      setPauseFlag(false);
       setQueuePos(0);
     }
   }, [resetFlag]);
