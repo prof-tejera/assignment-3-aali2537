@@ -49,6 +49,7 @@ const Container = styled(Panel)`
   @media (max-width: 1200px) {
     font-size: 11px;
   }
+  font-size: 15px;
 `;
 
 const FrontSide = styled.div`
@@ -81,7 +82,7 @@ const Timer = () => {
     if (width <= 1600) {
       return 12 * widthEm;
     }
-    return 15 * widthEm;
+    return 14 * widthEm;
   };
 
   return (
@@ -116,7 +117,7 @@ const Timer = () => {
           icon={timerActive ? "pause" : "play"}
           left={50}
           top={0}
-          border={2}
+          border={true}
           onClick={() => toggleTimer()}
           size={buttonSize}
         />
