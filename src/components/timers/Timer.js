@@ -93,7 +93,6 @@ const Timer = () => {
           top={0}
           border={true}
           onClick={() => {
-            console.log("reset clicked");
             setResetFlag(true);
           }}
           size={buttonSize}
