@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 import SlidingBar from "./SlidingBar";
 import Timer from "../timers/Timer";
 import { QueueContext } from "../context/QueueContext";
-import TimerProvider from "../context/TimerContext";
 import SquareButton from "./SquareButton";
 
 const FlexBox = styled.div`
@@ -28,10 +28,8 @@ const ActiveQueue = ({ editHandler }) => {
 
   return (
     <FlexBox>
-      <TimerProvider>
-        <SlidingBar options={getSlidingBarOptions()} tabPos={currPos + 1} />
-        <Timer />
-      </TimerProvider>
+      <SlidingBar options={getSlidingBarOptions()} tabPos={currPos + 1} />
+      <Timer />
       <SquareButton
         type={"Edit"}
         enterFrom={"Left"}
@@ -39,6 +37,10 @@ const ActiveQueue = ({ editHandler }) => {
       />
     </FlexBox>
   );
+};
+
+ActiveQueue.propTypes = {
+  editHandler: PropTypes.func,
 };
 
 export default ActiveQueue;
