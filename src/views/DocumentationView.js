@@ -9,6 +9,8 @@ import Circle from "../components/generic/Circle";
 import Panel from "../components/generic/Panel";
 import Label from "../components/generic/Label";
 import Input from "../components/generic/Input";
+import SquareButton from "../components/generic/SquareButton";
+import QueueTimerPanel from "../components/generic/QueueTimerPanel";
 
 const Container = styled.div`
   display: flex;
@@ -42,7 +44,7 @@ class Documentation extends React.Component {
             title="Button "
             component={
               <div style={{ position: "relative" }}>
-                <Button icon="play" />
+                <Button icon="play" size={60} border={false} />
               </div>
             }
             propDocs={[
@@ -62,6 +64,18 @@ class Documentation extends React.Component {
                 prop: "top",
                 description: "Changes top position for animation purposes",
                 type: "number",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "size",
+                description: "px value of width and height",
+                type: "number",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "border",
+                description: "Determines if button has colored border or not",
+                type: "boolean",
                 defaultValue: "N/A",
               },
             ]}
@@ -110,13 +124,107 @@ class Documentation extends React.Component {
             ]}
           />
           <DocumentComponent
-            title="Label "
+            title="Input "
             component={<Input></Input>}
             propDocs={[
               {
                 prop: "N/A",
                 description: "Styled input for taking settings options",
                 type: "N/A",
+                defaultValue: "N/A",
+              },
+            ]}
+          />
+          <DocumentComponent
+            title="Square Button "
+            component={
+              <div style={{ position: "relative" }}>
+                <SquareButton type={"Start"} enterFrom={"Left"} />
+              </div>
+            }
+            propDocs={[
+              {
+                prop: "type",
+                description: "Determines the text, color, and icon of Button ",
+                type: "String",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "clickHandler",
+                description: "event handler",
+                type: "function",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "enterFrom",
+                description:
+                  "Determines which side the colored animation slides in from",
+                type: "String",
+                defaultValue: "N/A",
+              },
+            ]}
+          />
+          <DocumentComponent
+            title="QueueTimerPanel "
+            component={
+              <div style={{ position: "relative" }}>
+                <QueueTimerPanel
+                  timerType={"Tabata"}
+                  roundSetting={2}
+                  workLength={3}
+                  restLength={5}
+                />
+              </div>
+            }
+            propDocs={[
+              {
+                prop: "timerType",
+                description:
+                  "Type of timer to determine what settings to show on backside ",
+                type: "String",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "secondSetting",
+                description: "Shows how many seconds timer has",
+                type: "function",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "minuteSetting",
+                description: "Shows how many minutes timer has",
+                type: "String",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "roundSetting",
+                description: "Shows how many rounds timer has",
+                type: "String",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "workLength",
+                description: "Shows how long the work round is",
+                type: "String",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "restLength",
+                description: "Shows how long the rest round is",
+                type: "String",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "removeHandler",
+                description:
+                  "Event handler for removing panel when exit button is clicked",
+                type: "function",
+                defaultValue: "N/A",
+              },
+              {
+                prop: "disableHover",
+                description: "Disables flip on hover",
+                type: "Boolean",
                 defaultValue: "N/A",
               },
             ]}

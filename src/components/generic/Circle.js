@@ -42,6 +42,7 @@ const Circle = ({ size, strokeWidth, percent }) => {
 Circle.propType = {
   size: PropTypes.number,
   strokeWidth: PropTypes.number,
+  percent: PropTypes.number,
 };
 
 Circle.defaultProps = {

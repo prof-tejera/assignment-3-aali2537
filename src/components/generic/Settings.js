@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Button from "./Button";
 import Input from "./Input";
@@ -27,13 +28,12 @@ const defaultSetting = {
   restLength: 3,
 };
 
-const Settings = (props) => {
+const Settings = ({ timerType, addHandler }) => {
   const [minuteSetting, setMinuteSetting] = useState(defaultSetting.minutes);
   const [secondSetting, setSecondSetting] = useState(defaultSetting.seconds);
   const [roundSetting, setRoundSetting] = useState(defaultSetting.rounds);
   const [workLength, setWorkLength] = useState(defaultSetting.workLength);
   const [restLength, setRestLength] = useState(defaultSetting.restLength);
-  const { timerType, addHandler } = props;
   const showRounds = timerType === "XY" || timerType === "Tabata";
   const showRoundType = timerType === "Tabata";
   const history = useHistory();
@@ -135,6 +135,11 @@ const Settings = (props) => {
       />
     </Div>
   );
+};
+
+Settings.propTypes = {
+  timerType: PropTypes.string,
+  addHandler: PropTypes.func,
 };
 
 export default Settings;
