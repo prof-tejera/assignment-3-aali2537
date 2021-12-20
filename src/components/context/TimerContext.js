@@ -113,6 +113,7 @@ const TimerProvider = ({ children }) => {
     setPTime();
   };
 
+  //Force end of queue finish
   const QueueFinished = (reset) => {
     setTimerActive(false);
     setBtnActive(false);
@@ -159,6 +160,7 @@ const TimerProvider = ({ children }) => {
   useEffect(() => {
     if (fastForwardFlag) {
       setFastForwardFlag(false);
+      setPauseFlag(false);
       timerFinished();
     }
   }, [fastForwardFlag]);
@@ -197,7 +199,7 @@ const TimerProvider = ({ children }) => {
         clearInterval(id);
       };
     }
-  }, [timerActive]);
+  }, [timerActive, pauseFlag]);
 
   //Calculate each round type and progress bar percentage
   useEffect(() => {
