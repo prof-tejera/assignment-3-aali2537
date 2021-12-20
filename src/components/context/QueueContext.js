@@ -58,6 +58,7 @@ const testQueue = [
 const QueueProvider = ({ children }) => {
   const [timerQueue, setTimerQueue] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
+  const [totalLength, setTotalLength] = useState(0);
 
   //Exposed to context subscribers to add a timer to the queue
   const addTimer = (
@@ -91,6 +92,7 @@ const QueueProvider = ({ children }) => {
     );
     queue.push(newTimer);
     setTimerQueue(queue);
+    setTotalLength(totalLength + 1);
   };
 
   //Returns a set of timers from a specific point in queue
@@ -123,11 +125,7 @@ const QueueProvider = ({ children }) => {
     );
     timerQueue.splice(index, 1);
     setTimerQueue(timerQueue);
-  };
-
-  //Returns total size of queue
-  const totalLength = () => {
-    return timerQueue.length;
+    setTotalLength(totalLength - 1);
   };
 
   return (

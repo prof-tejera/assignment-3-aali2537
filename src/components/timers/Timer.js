@@ -52,23 +52,13 @@ const Container = styled(Panel)`
   font-size: 15px;
 `;
 
-const FrontSide = styled.div`
-  position: relative;
-  top: 0;
-  left: 0;
-  border-radius: 1em;
-`;
-
 const Timer = () => {
   const {
-    flipped,
-    setFlipped,
     btnActive,
     toggleTimer,
     timerActive,
     setFastForwardFlag,
     setResetFlag,
-    showSettings,
     percent,
   } = useContext(TimerContext);
   const buttonSize = getButtonSize();
@@ -101,15 +91,18 @@ const Timer = () => {
           icon={"reset"}
           left={btnActive ? 20 : 50}
           top={0}
-          border={2}
-          onClick={() => setResetFlag(true)}
+          border={true}
+          onClick={() => {
+            console.log("reset clicked");
+            setResetFlag(true);
+          }}
           size={buttonSize}
         />
         <Button
           icon={"fast-forward"}
           left={btnActive ? 80 : 50}
           top={0}
-          border={2}
+          border={true}
           onClick={() => setFastForwardFlag(true)}
           size={buttonSize}
         />

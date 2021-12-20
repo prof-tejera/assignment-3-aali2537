@@ -56,7 +56,7 @@ const NonActiveQueue = ({ startHandler }) => {
   const showTime = formattedTime.minutes !== 0 || formattedTime.seconds !== 0;
 
   useEffect(() => {
-    if (totalLength() > 0) {
+    if (totalLength > 0) {
       setShowStart(true);
     } else {
       setShowStart(false);

@@ -76,7 +76,7 @@ const QueueOverview = () => {
   const [slideDirection, setSlideDirection] = useState("left");
   const leftPositions = [-10, 15, 40, 65, 90, 115];
   const hideLeft = currPos === 0;
-  const hideRight = currPos + 4 >= totalLength();
+  const hideRight = currPos + 4 >= totalLength;
   const prevTotalLength = useRef(0);
 
   //Event handler to scroll through queue
@@ -96,20 +96,20 @@ const QueueOverview = () => {
   //Set current position to last page whenever a new timer is added
   useEffect(() => {
     //Only execute if a timer was added
-    if (prevTotalLength.current < totalLength()) {
-      if (totalLength() % 4 !== 0) {
-        setCurrPos(4 * Math.floor(totalLength() / 4));
+    if (prevTotalLength.current < totalLength) {
+      if (totalLength % 4 !== 0) {
+        setCurrPos(4 * Math.floor(totalLength / 4));
       } else {
-        setCurrPos(totalLength() - 4);
+        setCurrPos(totalLength - 4);
       }
     }
-    prevTotalLength.current = totalLength();
-  }, [totalLength()]);
+    prevTotalLength.current = totalLength;
+  }, [totalLength]);
 
   //Repopulate timer list after scroll button is clicked
   useEffect(() => {
     setTimers(getTimers(currPos, 4));
-  }, [currPos]);
+  }, [currPos, getTimers]);
 
   //Handler for removing timer panel and animating fade
   const removePanel = (index) => {
@@ -149,7 +149,7 @@ const QueueOverview = () => {
     if (timers.length === 0 && currPos !== 0) {
       setCurrPos(currPos - 4);
     }
-  }, [timers]);
+  }, [timers, currPos]);
 
   useEffect(() => {}, [disableHover]);
 

@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
 
@@ -58,7 +58,7 @@ const Settings = (props) => {
             name="Minutes"
             placeholder="Minutes"
             onKeyPress={(e) => onlyNumber(e)}
-            onChange={(e) => setMinuteSetting(e.target.value)}
+            onChange={(e) => setMinuteSetting(parseInt(e.target.value))}
             value={minuteSetting}
           />
         </FlexDiv>
@@ -71,7 +71,7 @@ const Settings = (props) => {
             name="Seconds"
             placeholder="Seconds"
             onKeyPress={(e) => onlyNumber(e)}
-            onChange={(e) => setSecondSetting(e.target.value)}
+            onChange={(e) => setSecondSetting(parseInt(e.target.value))}
             value={secondSetting}
           />
         </FlexDiv>
@@ -84,7 +84,7 @@ const Settings = (props) => {
             name="Rounds"
             placeholder="Total Rounds"
             onKeyPress={(e) => onlyNumber(e)}
-            onChange={(e) => setRoundSetting(e.target.value)}
+            onChange={(e) => setRoundSetting(parseInt(e.target.value))}
             value={roundSetting}
           />
         </FlexDiv>
@@ -97,7 +97,7 @@ const Settings = (props) => {
             name="Work"
             placeholder="Work Period"
             onKeyPress={(e) => onlyNumber(e)}
-            onChange={(e) => setWorkLength(e.target.value)}
+            onChange={(e) => setWorkLength(parseInt(e.target.value))}
             value={workLength}
           />
         </FlexDiv>
@@ -110,7 +110,7 @@ const Settings = (props) => {
             name="Rest"
             placeholder="Rest Period"
             onKeyPress={(e) => onlyNumber(e)}
-            onChange={(e) => setRestLength(e.target.value)}
+            onChange={(e) => setRestLength(parseInt(e.target.value))}
             value={restLength}
           />
         </FlexDiv>
