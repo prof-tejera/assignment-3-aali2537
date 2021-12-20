@@ -9,6 +9,8 @@
 - Another feature I was unsure of was the fast forward functionality. The way mine originally worked was if the timer was paused and the user fast forwarded, the timer would skip to the next one but remained pause. I thought it would make more sense to automatically play and resume once skipping to the next timer, but can revert this if necessary.
 - Lastly users can click the edit button during the timer running to go back to the queue overview/edit page( counts as a reset workout click so loading back into the workout app will not keep workout progress).
 
+Assignment Link: https://prof-tejera.github.io/assignment-3-aali2537
+
 # Objective for Assignment 3
 
 This is the 3rd and last assignment (A3) for E-39 Design Principles in React. Using our timers from Assignment 2 (A2), we will build a workout app that allows our users to assemble **multiple timers** into a workout queue. This workout queue will be executed in the order that the timers were added. Let's take a look at an example:
