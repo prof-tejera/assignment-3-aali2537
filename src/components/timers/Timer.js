@@ -36,6 +36,7 @@ const Container = styled(Panel)`
 
   width: ${widthEm}em;
   padding-top: 0;
+  font-size: 15px;
 
   background-color: #0f242e;
   @media (max-width: 1900px) {
@@ -49,7 +50,6 @@ const Container = styled(Panel)`
   @media (max-width: 1200px) {
     font-size: 11px;
   }
-  font-size: 15px;
 `;
 
 const Timer = () => {
@@ -66,13 +66,13 @@ const Timer = () => {
   const getCircleSize = () => {
     const width = window.innerWidth;
 
-    if (width <= 1000) {
+    if (width <= 1200) {
       return 11 * widthEm;
     }
     if (width <= 1600) {
       return 12 * widthEm;
     }
-    return 14 * widthEm;
+    return 15 * widthEm;
   };
 
   return (
