@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 
-import { convertFromMs } from "../../utils/helpers";
+import { convertFromMs, formatNumber } from "../../utils/helpers";
 import { TimerContext } from "../context/TimerContext";
 
 const TimerText = styled.p`
@@ -30,11 +30,17 @@ const TextDisplay = () => {
     useContext(TimerContext);
   const displayRound = timerType === "XY" || timerType === "Tabata";
   const displayRoundType = timerType === "Tabata";
+  const time = convertFromMs(currentTime);
 
   return (
     <>
       {congratsFlag && <TimerText>Nice job!</TimerText>}
-      {!congratsFlag && <TimerText>{convertFromMs(currentTime)}</TimerText>}
+      {!congratsFlag && (
+        <TimerText>
+          {formatNumber(time.minutes)}:{formatNumber(time.seconds)}:
+          {formatNumber(time.milliseconds)}
+        </TimerText>
+      )}
       {congratsFlag && <RoundText className="fadeIn2">Try Again?</RoundText>}
       {displayRound && !congratsFlag && (
         <RoundText>Round {currentRound}</RoundText>

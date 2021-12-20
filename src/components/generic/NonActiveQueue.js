@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 import Panel from "./Panel";
 import Label from "./Label";
+import { QueueContext } from "../context/QueueContext";
 import QueueOverview from "./QueueOverview";
 import SquareButton from "./SquareButton";
+import { convertFromMs } from "../../utils/helpers";
+import { useEffect } from "react/cjs/react.development";
 
 const TitlePanel = styled(Panel)`
   background-color: #0f242e;
@@ -34,18 +38,54 @@ const Flex = styled.div`
   }
 `;
 
+const ButtonsContainer = styled.div`
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+  justify-content: center;
+  margin-top: 2em;
+  transition: -webkit-flex 250ms linear;
+`;
+
 const NonActiveQueue = () => {
+  const { totalLength, totalTime } = useContext(QueueContext);
+  const [showStart, setShowStart] = useState(false);
+  const formattedTime = convertFromMs(totalTime);
+  const history = useHistory();
+  const showTime = formattedTime.minutes !== 0 || formattedTime.seconds !== 0;
+
+  useEffect(() => {
+    if (totalLength() > 0) {
+      setShowStart(true);
+    } else {
+      setShowStart(false);
+    }
+  }, [totalLength]);
+
   return (
     <Flex>
       <TitlePanel>
         <Label>Workout Queue</Label>
         <div>
-          <SubTitle>Total Time:</SubTitle>
+          {showTime && (
+            <SubTitle>
+              Total Time:
+              {formattedTime.minutes === 0
+                ? ""
+                : `${formattedTime.minutes}M`}{" "}
+              {formattedTime.seconds === 0 ? "" : `${formattedTime.seconds}S`}
+            </SubTitle>
+          )}
         </div>
       </TitlePanel>
-      <QueueOverview></QueueOverview>
-      <SquareButton text={"Start"}></SquareButton>
-      <SquareButton text={"Add"}></SquareButton>
+      <QueueOverview />
+      <ButtonsContainer>
+        {showStart && <SquareButton type={"Start"}></SquareButton>}
+        <SquareButton
+          type={"Add"}
+          clickHandler={() => history.push("/add")}
+        ></SquareButton>
+      </ButtonsContainer>
     </Flex>
   );
 };

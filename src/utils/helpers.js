@@ -29,11 +29,11 @@ export function formatNumber(int) {
 
 //Takes an argument in the form of milliseconds and outputs to format MM:SS:MS
 export function convertFromMs(time) {
-  const milliseconds = formatNumber((time % 1000) / 10);
-  const seconds = formatNumber(Math.floor((time / 1000) % 60));
-  const minutes = formatNumber(Math.floor((time / (1000 * 60)) % 60));
+  const milliseconds = (time % 1000) / 10;
+  const seconds = Math.floor((time / 1000) % 60);
+  const minutes = Math.floor((time / (1000 * 60)) % 60);
 
-  return `${minutes}:${seconds}:${milliseconds}`;
+  return { minutes: minutes, seconds: seconds, milliseconds: milliseconds };
 }
 
 //Mapping of Timer type to tab position values
@@ -80,7 +80,7 @@ export function calcTotalTime(
   roundSetting
 ) {
   if (timerType === "Stopwatch" || timerType === "Countdown") {
-    return minuteSetting * 60000 + secondSetting * 100;
+    return minuteSetting * 60000 + secondSetting * 1000;
   }
 
   if (timerType === "XY") {
@@ -88,6 +88,6 @@ export function calcTotalTime(
   }
 
   if (timerType === "Tabata") {
-    return (workLength * 100 + restLength * 100) * roundSetting;
+    return (workLength * 1000 + restLength * 1000) * roundSetting;
   }
 }

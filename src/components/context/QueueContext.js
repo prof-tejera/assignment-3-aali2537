@@ -56,7 +56,7 @@ const testQueue = [
 ];
 
 const QueueProvider = ({ children }) => {
-  const [timerQueue, setTimerQueue] = useState(testQueue);
+  const [timerQueue, setTimerQueue] = useState([]);
   const [totalTime, setTotalTime] = useState(0);
 
   //Exposed to context subscribers to add a timer to the queue
@@ -108,6 +108,19 @@ const QueueProvider = ({ children }) => {
 
   //Removes timer at given index
   const removeTimer = (index) => {
+    const timer = timerQueue[index];
+
+    setTotalTime(
+      totalTime -
+        calcTotalTime(
+          timer.timerType,
+          timer.minuteSetting,
+          timer.secondSetting,
+          timer.workLength,
+          timer.restLength,
+          timer.roundSetting
+        )
+    );
     timerQueue.splice(index, 1);
     setTimerQueue(timerQueue);
   };
@@ -119,7 +132,14 @@ const QueueProvider = ({ children }) => {
 
   return (
     <QueueContext.Provider
-      value={{ addTimer, timerQueue, getTimers, removeTimer, totalLength }}
+      value={{
+        addTimer,
+        timerQueue,
+        getTimers,
+        removeTimer,
+        totalLength,
+        totalTime,
+      }}
     >
       {children}
     </QueueContext.Provider>

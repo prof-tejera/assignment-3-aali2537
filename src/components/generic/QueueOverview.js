@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import styled, { keyframes, css } from "styled-components";
 
 import { QueueContext } from "../context/QueueContext";
@@ -66,8 +66,8 @@ const InnerTimersContainer = styled.div`
 `;
 
 const QueueOverview = () => {
-  const [currPos, setCurrPos] = useState(0);
   const { getTimers, removeTimer, totalLength } = useContext(QueueContext);
+  const [currPos, setCurrPos] = useState(0);
   const [timers, setTimers] = useState(getTimers(0, 4));
   const [slideFrom, setSlideFrom] = useState(4);
   const [animateIndex, setAnimateIndex] = useState(false);
@@ -77,6 +77,7 @@ const QueueOverview = () => {
   const leftPositions = [-10, 15, 40, 65, 90, 115];
   const hideLeft = currPos === 0;
   const hideRight = currPos + 4 >= totalLength();
+  const prevTotalLength = useRef(0);
 
   //Event handler to scroll through queue
   const changePos = (direction) => {
@@ -91,6 +92,19 @@ const QueueOverview = () => {
     setKeyFrame("Slide");
     setSlideFrom(0);
   };
+
+  //Set current position to last page whenever a new timer is added
+  useEffect(() => {
+    //Only execute if a timer was added
+    if (prevTotalLength.current < totalLength()) {
+      if (totalLength() % 4 !== 0) {
+        setCurrPos(4 * Math.floor(totalLength() / 4));
+      } else {
+        setCurrPos(totalLength() - 4);
+      }
+    }
+    prevTotalLength.current = totalLength();
+  }, [totalLength()]);
 
   //Repopulate timer list after scroll button is clicked
   useEffect(() => {
