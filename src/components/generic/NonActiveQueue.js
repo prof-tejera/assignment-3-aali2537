@@ -80,9 +80,12 @@ const NonActiveQueue = () => {
       </TitlePanel>
       <QueueOverview />
       <ButtonsContainer>
-        {showStart && <SquareButton type={"Start"}></SquareButton>}
+        {showStart && (
+          <SquareButton type={"Start"} enterFrom={"Left"}></SquareButton>
+        )}
         <SquareButton
           type={"Add"}
+          enterFrom={"Right"}
           clickHandler={() => history.push("/add")}
         ></SquareButton>
       </ButtonsContainer>

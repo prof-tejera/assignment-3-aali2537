@@ -72,7 +72,7 @@ const Container = styled(Panel)`
   &::before {
     border-radius: 0;
     box-shadow: inset 0 0 0 70px ${(props) => props.colors};
-    margin-left: ${(props) => (props.type === "Start" ? -100 : 100)}%;
+    margin-left: ${(props) => (props.enterFrom === "Left" ? -100 : 100)}%;
     z-index: -1;
   }
 
@@ -81,9 +81,14 @@ const Container = styled(Panel)`
   }
 `;
 
-const SquareButton = ({ type, clickHandler }) => {
+const SquareButton = ({ type, clickHandler, enterFrom }) => {
   return (
-    <Container colors={colors[type]} type={type} onClick={clickHandler}>
+    <Container
+      colors={colors[type]}
+      type={type}
+      enterFrom={enterFrom}
+      onClick={clickHandler}
+    >
       <ButtonLabel>
         <FontAwesomeIcon icon={icons[type]} />
         {type}
@@ -94,6 +99,8 @@ const SquareButton = ({ type, clickHandler }) => {
 
 SquareButton.propTypes = {
   type: PropTypes.oneOf(["Start", "Add"]),
+  clickHandler: PropTypes.func,
+  enterFrom: PropTypes.oneOf(["Left", "Right"]),
 };
 
 export default SquareButton;
