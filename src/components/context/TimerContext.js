@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { tabMap } from "../../utils/helpers";
 import { calcRoundTime } from "../../utils/helpers";
 
 export const TimerContext = React.createContext({});
@@ -27,16 +26,12 @@ const TimerProvider = ({ children }) => {
   const [secondSetting, setSecondSetting] = useState(
     defaultSettings["seconds"]
   );
-  const [tabPos, setTabPos] = useState("0em");
-  const [btn1, setBtn1] = useState("play");
-  const [flipped, setFlipped] = useState(false);
   const [timerActive, setTimerActive] = useState(false);
   const [btnActive, setBtnActive] = useState(false);
   const [roundTime, setRoundTime] = useState(20);
   const [resetFlag, setResetFlag] = useState(false);
   const [fastForwardFlag, setFastForwardFlag] = useState(false);
   const [congratsFlag, setCongratsFlag] = useState(false);
-  const [showSettings, setShowSettings] = useState(true);
 
   // Function to make getting the round time easier with less typing
   const easyRoundTime = () => {
@@ -61,12 +56,6 @@ const TimerProvider = ({ children }) => {
     }
   };
 
-  //Sets the current timer and animates the moving tab
-  const selectTimer = (timer) => {
-    setTimerType(timer);
-    setTabPos(tabMap[timer]);
-  };
-
   //Reset state to default settings
   const resetState = () => {
     setMinuteSetting(defaultSettings["minutes"]);
@@ -84,7 +73,6 @@ const TimerProvider = ({ children }) => {
 
   //Soft reset for completion, users still retain their settings chosen
   const softReset = () => {
-    setFlipped(false);
     setTimerActive(false);
     setBtnActive(false);
     setCurrentRound(1);
@@ -119,7 +107,6 @@ const TimerProvider = ({ children }) => {
   const timerFinished = () => {
     softReset();
     setCongratsFlag(true);
-    setShowSettings(true);
   };
 
   //Anytime settings change set current time and percentage to make sure they have a fresh value
@@ -140,14 +127,12 @@ const TimerProvider = ({ children }) => {
     if (resetFlag) {
       resetState();
       setResetFlag(false);
-      setShowSettings(true);
     }
   }, [resetFlag, resetState]);
 
   //Start/pause everytime play/pause button is pushed
   useEffect(() => {
     if (timerActive) {
-      setShowSettings(false);
       const id = setInterval(() => {
         if (timerType === "Countdown" || timerType === "XY") {
           setCurrentTime((count) => count - 50);
@@ -164,7 +149,6 @@ const TimerProvider = ({ children }) => {
   //Resets state upon choosing new timer
   useEffect(() => {
     resetState();
-    setShowSettings(true);
   }, [timerType]);
 
   //Calculate each round type and progress bar percentage
@@ -213,7 +197,6 @@ const TimerProvider = ({ children }) => {
     <TimerContext.Provider
       value={{
         timerType,
-        selectTimer,
         percent,
         setPercent,
         currentTime,
@@ -224,11 +207,6 @@ const TimerProvider = ({ children }) => {
         setMaxRound,
         roundType,
         setRoundType,
-        tabPos,
-        btn1,
-        setBtn1,
-        flipped,
-        setFlipped,
         workLength,
         setWorkLength,
         restLength,
@@ -246,7 +224,6 @@ const TimerProvider = ({ children }) => {
         setResetFlag,
         setFastForwardFlag,
         congratsFlag,
-        showSettings,
       }}
     >
       {children}
