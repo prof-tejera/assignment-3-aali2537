@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 import NonActiveQueue from "../components/generic/NonActiveQueue";
 import ActiveQueue from "../components/generic/ActiveQueue";
+import TimerProvider from "../components/context/TimerContext";
 
 const QueueViewContainer = styled.div`
   display: flex;
@@ -14,13 +15,15 @@ function App() {
   const [queueActive, setQueueActive] = useState(false);
 
   return (
-    <QueueViewContainer>
-      {queueActive ? (
-        <ActiveQueue editHandler={() => setQueueActive(false)} />
-      ) : (
-        <NonActiveQueue startHandler={() => setQueueActive(true)} />
-      )}
-    </QueueViewContainer>
+    <TimerProvider>
+      <QueueViewContainer>
+        {queueActive ? (
+          <ActiveQueue editHandler={() => setQueueActive(false)} />
+        ) : (
+          <NonActiveQueue startHandler={() => setQueueActive(true)} />
+        )}
+      </QueueViewContainer>
+    </TimerProvider>
   );
 }
 
