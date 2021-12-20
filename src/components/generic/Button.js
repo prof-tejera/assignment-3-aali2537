@@ -14,7 +14,6 @@ import {
   faArrowLeft,
 } from "@fortawesome/free-solid-svg-icons";
 
-const iconSize = 70;
 const panelBackground = "#0f242e";
 const transitionCurve = "0.8s cubic-bezier(0.81, -0.21, 0.24, 1.09)";
 
@@ -44,7 +43,10 @@ const colors = {
 
 const CircleButton = styled.div`
   height: ${(props) => props.size}px;
-  width: ${(props) => props.size}px;
+  width: ${(props) => {
+    console.log(props.size);
+    return props.size;
+  }}px;
   position: relative;
   display: table-cell;
   vertical-align: middle;
@@ -78,7 +80,7 @@ const CircleButton = styled.div`
 
   &::before {
     background: ${(props) => colors[props.icon]};
-    box-shadow: inset 0 0 0 ${iconSize}px ${panelBackground};
+    box-shadow: inset 0 0 0 ${(props) => props.size}px ${panelBackground};
   }
 
   &:hover::before {
@@ -87,7 +89,7 @@ const CircleButton = styled.div`
 
   svg {
     position: relative;
-    font-size: ${iconSize / 2}px;
+    font-size: ${(props) => props.size / 2}px;
     color: white;
   }
 `;
@@ -159,6 +161,8 @@ Button.propTypes = {
   left: PropTypes.number,
   top: PropTypes.number,
   border: PropTypes.bool,
+  onClick: PropTypes.func,
+  size: PropTypes.number,
 };
 
 export default Button;

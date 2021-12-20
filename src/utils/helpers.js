@@ -91,3 +91,19 @@ export function calcTotalTime(
     return (workLength * 1000 + restLength * 1000) * roundSetting;
   }
 }
+
+//Generate button size based on window size
+export function getButtonSize() {
+  const width = window.innerWidth;
+
+  if (width <= 1000) {
+    return 60;
+  }
+  if (width <= 1300) {
+    return 65;
+  }
+  if (width <= 1600) {
+    return 65;
+  }
+  return 70;
+}

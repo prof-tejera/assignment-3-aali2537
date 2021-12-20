@@ -29,7 +29,6 @@ const FlipContainer = styled.div`
   perspective: 1000px;
 
   &:hover ${Flipper} {
-    ${console.log("entered")}
     transform: rotateY(${(props) => (props.disableHover ? 0 : 180)}deg);
   }
 `;

@@ -1,12 +1,8 @@
-import React, { useContext } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
-import Timer from "../components/timers/Timer";
-import TimerProvider from "../components/context/TimerContext";
-import SlidingBar from "../components/generic/SlidingBar";
 import NonActiveQueue from "../components/generic/NonActiveQueue";
-
-import { QueueContext } from "../components/context/QueueContext";
+import ActiveQueue from "../components/generic/ActiveQueue";
 
 const QueueViewContainer = styled.div`
   display: flex;
@@ -15,10 +11,15 @@ const QueueViewContainer = styled.div`
 `;
 
 function App() {
-  const { timerQueue, addTimer } = useContext(QueueContext);
+  const [queueActive, setQueueActive] = useState(false);
+
   return (
     <QueueViewContainer>
-      <NonActiveQueue></NonActiveQueue>
+      {queueActive ? (
+        <ActiveQueue />
+      ) : (
+        <NonActiveQueue startHandler={() => setQueueActive(true)} />
+      )}
     </QueueViewContainer>
   );
 }

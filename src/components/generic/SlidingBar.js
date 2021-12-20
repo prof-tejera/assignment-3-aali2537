@@ -78,7 +78,7 @@ const Li = styled.li`
   transition: ${transitionCurve};
 
   :hover {
-    cursor: pointer;
+    cursor: ${(props) => (props.hover ? "pointer" : "default")};
   }
 
   &&.selected {
@@ -100,6 +100,8 @@ const Tab = styled.div`
 `;
 
 const SlidingBar = ({ options, tabPos, clickHandler }) => {
+  //disable hover pointer if no click handler
+  const hover = clickHandler;
   return (
     <ListPanel>
       <TimerList>
@@ -110,8 +112,12 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
             }
           }}
           className={tabPos === 1 ? "selected" : ""}
+          hover={hover}
         >
-          <FontAwesomeIcon icon={iconsList[options[0]]} /> {options[0]}
+          {iconsList[options[0]] && (
+            <FontAwesomeIcon icon={iconsList[options[0]]} />
+          )}
+          {options[0]}
         </Li>
         <Li
           onClick={() => {
@@ -120,8 +126,11 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
             }
           }}
           className={tabPos === 2 ? "selected" : ""}
+          hover={hover}
         >
-          <FontAwesomeIcon icon={iconsList[options[1]]} />
+          {iconsList[options[1]] && (
+            <FontAwesomeIcon icon={iconsList[options[1]]} />
+          )}
           {options[1]}
         </Li>
         <Li
@@ -131,8 +140,12 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
             }
           }}
           className={tabPos === 3 ? "selected" : ""}
+          hover={hover}
         >
-          <FontAwesomeIcon icon={iconsList[options[2]]} /> {options[2]}
+          {iconsList[options[2]] && (
+            <FontAwesomeIcon icon={iconsList[options[2]]} />
+          )}
+          {options[2]}
         </Li>
         <Li
           onClick={() => {
@@ -141,8 +154,11 @@ const SlidingBar = ({ options, tabPos, clickHandler }) => {
             }
           }}
           className={tabPos === 4 ? "selected" : ""}
+          hover={hover}
         >
-          <FontAwesomeIcon icon={iconsList[options[3]]} />
+          {iconsList[options[3]] && (
+            <FontAwesomeIcon icon={iconsList[options[3]]} />
+          )}
           {options[3]}
         </Li>
       </TimerList>

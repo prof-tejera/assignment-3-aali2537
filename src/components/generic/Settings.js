@@ -6,6 +6,7 @@ import Button from "./Button";
 import Input from "./Input";
 import Label from "./Label";
 import SubLabel from "./SubLabel";
+import { getButtonSize } from "../../utils/helpers";
 
 const Div = styled.div`
   text-align: center;
@@ -118,7 +119,7 @@ const Settings = (props) => {
         icon="save"
         top={80}
         left={50}
-        size={70}
+        size={getButtonSize()}
         border={true}
         onClick={() => {
           addHandler(

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import Panel from "./Panel";
 import Label from "./Label";
@@ -47,7 +48,7 @@ const ButtonsContainer = styled.div`
   transition: -webkit-flex 250ms linear;
 `;
 
-const NonActiveQueue = () => {
+const NonActiveQueue = ({ startHandler }) => {
   const { totalLength, totalTime } = useContext(QueueContext);
   const [showStart, setShowStart] = useState(false);
   const formattedTime = convertFromMs(totalTime);
@@ -79,7 +80,7 @@ const NonActiveQueue = () => {
         </div>
       </TitlePanel>
       <QueueOverview />
-      <ButtonsContainer>
+      <ButtonsContainer onClick={startHandler}>
         {showStart && (
           <SquareButton type={"Start"} enterFrom={"Left"}></SquareButton>
         )}
@@ -91,6 +92,10 @@ const NonActiveQueue = () => {
       </ButtonsContainer>
     </Flex>
   );
+};
+
+NonActiveQueue.propTypes = {
+  startHandler: PropTypes.func,
 };
 
 export default NonActiveQueue;
