@@ -6,6 +6,7 @@ import {
   faPlusSquare,
   faBiking,
   faHammer,
+  faBackspace,
 } from "@fortawesome/free-solid-svg-icons";
 
 import Panel from "./Panel";
@@ -15,12 +16,14 @@ const icons = {
   Start: faBiking,
   Add: faPlusSquare,
   Edit: faHammer,
+  Back: faBackspace,
 };
 
 const colors = {
   Start: "#15cb61",
   Add: "#ED7D3A",
   Edit: "#a80874",
+  Back: "#a80874",
 };
 
 const ButtonLabel = styled(Label)`
@@ -37,7 +40,7 @@ const Container = styled(Panel)`
   position: relative;
   overflow: hidden;
   z-index: 5;
-  width: 5em;
+  width: 6em;
   margin-right: 1em;
   margin-left: 1em;
 
@@ -59,21 +62,10 @@ const Container = styled(Panel)`
   }
 
   svg {
-    margin-right: 0.5em;
-  }
-
-  & .fa-biking {
-    margin-right: 0.2em;
-  }
-
-  & .fa-plus-square {
     margin-right: 0.2em;
   }
 
   font-size: 13px;
-
-  &::after {
-  }
 
   &::before {
     border-radius: 0;
@@ -104,7 +96,7 @@ const SquareButton = ({ type, clickHandler, enterFrom }) => {
 };
 
 SquareButton.propTypes = {
-  type: PropTypes.oneOf(["Start", "Add", "Edit"]),
+  type: PropTypes.oneOf(["Start", "Add", "Edit", "Back"]),
   clickHandler: PropTypes.func,
   enterFrom: PropTypes.oneOf(["Left", "Right"]),
 };

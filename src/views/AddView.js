@@ -6,6 +6,8 @@ import Settings from "../components/generic/Settings";
 import Panel from "../components/generic/Panel";
 import { QueueContext } from "../components/context/QueueContext";
 import FadeIn from "../components/generic/FadeIn";
+import SquareButton from "../components/generic/SquareButton";
+import { useHistory } from "react-router-dom";
 
 const FlexBox = styled.div`
   display: flex;
@@ -40,6 +42,7 @@ const addOptions = ["Stopwatch", "Countdown", "XY", "Tabata"];
 const AddView = () => {
   const [tabPos, setTabPos] = useState(1);
   const { addTimer } = useContext(QueueContext);
+  const history = useHistory();
 
   return (
     <FlexBox>
@@ -51,6 +54,11 @@ const AddView = () => {
       <SettingContainer>
         <Settings timerType={addOptions[tabPos - 1]} addHandler={addTimer} />
       </SettingContainer>
+      <SquareButton
+        type={"Back"}
+        enterFrom={"Left"}
+        clickHandler={() => history.push("/")}
+      />
     </FlexBox>
   );
 };
