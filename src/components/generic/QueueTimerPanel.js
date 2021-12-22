@@ -111,7 +111,7 @@ const QueueTimerPanel = ({
             <Button
               icon={"x"}
               top={0}
-              left={95}
+              left={88}
               size={50}
               border={true}
               onClick={removeHandler}
