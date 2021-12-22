@@ -107,7 +107,7 @@ const Wrapper = styled.div`
   left: ${(props) => props.left}%;
   top: ${(props) => props.top}%;
   transition: ${transitionCurve};
-  margin-left: -35px;
+  margin-left: -${(props) => props.size / 2}px;
 
   .pulse {
       animation: ${Pulse};
